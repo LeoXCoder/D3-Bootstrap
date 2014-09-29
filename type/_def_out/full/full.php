@@ -16,7 +16,7 @@ $p->format('tag', ' | ', '&emsp;<span class="glyphicon glyphicon-tags"></span>&e
 $p->format('feed', tf('Комментарии по RSS'), ' | <span>', '</span>');
 $p->format('edit', 'Изменить', '&emsp;<span class="glyphicon glyphicon-pencil"></span>&ensp;');
 $p->format('view_count', '&emsp;<span class="glyphicon glyphicon-eye-open"></span>&ensp;');
-$p->format('comments', '<button type="button" class="btn btn-link right">'.tf('Обсудить').'</button>', tf('Читать комментарии'));
+$p->format('comments', '<span class="btn-comments">'.tf('Обсудить').'</span>', tf('Читать комментарии'));
 
 // исключенные записи
 $exclude_page_id = mso_get_val('exclude_page_id');
@@ -106,7 +106,7 @@ foreach ($pages as $page)
 					}
 					elseif ($f = mso_page_foreach('info-bottom')) require($f);
 					mso_page_content_end();
-					$p->line('[comments]');
+					//$p->line('[comments]');
 
 				$p->div_end('page_content');
 			}
