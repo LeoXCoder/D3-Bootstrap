@@ -9,12 +9,14 @@ if (!$pages) return;
 
 $p = new Page_out();
 
+/*
 foreach ($pages as &$page)
 {
     $page['page_content'] = preg_replace('/<p><span class="cut"><a href="([^"]*)[^>]*>([^<]*)<\/a><\/span><\/p>/si', "<a href=\"$1\" class=\"btn btn-link right\">$2</a>", $page['page_content']);
 }
+*/
 
-$p->format('title', '<h2 class="blog-post-title">', '</h2>', false);
+$p->format('title', '<h2 class="blog-post-title">', '</h2>', true);
 $p->format('date', 'D, j F Y г.', '<span class="glyphicon glyphicon-time"></span> <time datetime="[page_date_publish_iso]">', '</time>');
 $p->format('cat', ' -&gt; ', '<br /><span class="glyphicon glyphicon-info-sign"></span>&ensp;');
 $p->format('tag', ' | ', '&emsp;<span class="glyphicon glyphicon-tags"></span>&ensp;');

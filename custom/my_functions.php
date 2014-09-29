@@ -13,8 +13,8 @@ mso_register_sidebar('6', t('Подвал: 4-й сайдбар'));
 mso_register_sidebar('7', t('Подвал: 5-й сайдбар'));
 
 // заголовок виджета
-mso_set_val('widget_header_start', '<div class="panel-heading">');
-mso_set_val('widget_header_end', '</div>');
+mso_set_val('widget_header_start', '<h4>');
+mso_set_val('widget_header_end', '</h4>');
 
 # формируем li-элементы для меню
 # элементы представляют собой текст, где каждая строчка один пункт

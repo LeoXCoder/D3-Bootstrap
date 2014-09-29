@@ -73,7 +73,7 @@ if ($fn = mso_fe('custom/head-section.php')) require($fn); // подключен
             if ($fn = mso_fe('custom/sidebars.php')) require($fn);
             else
             {
-                mso_show_sidebar('1','<div class="sidebar-module"><div class="panel panel-default">','</div></div>', true);
+                mso_show_sidebar('1','<div class="sidebar-module sidebar-module-inset">','</div>', true);
             }
 
             if (function_exists('ushka')) echo ushka('main-end');
