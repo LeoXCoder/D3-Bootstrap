@@ -66,14 +66,14 @@ if ($page_text_ok and $comments) // есть страницы
 	{
 		echo '<div class="comments">';
 		
-		echo mso_get_val('page_comments_count_start', '<div class="page_comments_count">') 
+		echo mso_get_val('page_comments_count_start', '<div class="page_comments_count panel panel-default panel-body">') 
 			. tf('Комментариев') . ': ' . count($comments) 
 			. ' <span class="page_comments_rss"><a href="' . mso_page_url($page['page_slug']). '/feed">'
 			. mso_get_val('page_comments_rss', 'RSS') . '</a></span>'
 			. mso_get_val('page_comments_count_end', '</div>');
 	}
 	
-	echo '<section>';
+	echo '<ul class="media-list">';
 	
 	static $num_comment = 0; // номер комментария по порядку - если нужно выводить в type_foreach-файле
 	
@@ -100,7 +100,7 @@ if ($page_text_ok and $comments) // есть страницы
 		
 		$comments_date = mso_date_convert('Y-m-d в H:i:s', $comments_date);
 		
-		echo NR . '<article class="' . $class . '">';
+		echo NR . '<li class="media ' . $class . '">';
 		
 		$comment_url = '<span class="url">' . $comments_url . '</span>';
 		
@@ -134,28 +134,30 @@ if ($page_text_ok and $comments) // есть страницы
 		else
 		{
 			echo 
-				mso_avatar($comment, 'class="gravatar"')
+				'<div class="pull-left">'
+				. mso_avatar($comment, 'class="gravatar media-object"')
+				. '</div>'
 				
-				. '<div class="comment-info">' 
+				. '<div class="media-heading">' 
 					. $comment_url 
 					. ($comment_edit ? ' | ' . $comment_edit : '')
 					. ($comment_approved ? ' | ' . $comment_approved : '')
 					. $comment_num_comment 
-					. '<br>' . $comment_date
+					. ' - <small>'.$comment_date.'</small>'
 				. '</div>'
 				
-				. '<div class="comments_content">'
+				. '<div class="media-body">'
 					. mso_comments_content($comments_content) 
 				. '</div>';
 		}
 		
 		echo '<div class="clearfix"></div>';
 		
-		echo '</article>'; 
+		echo '</li>'; 
 		
 	}
 	
-	echo '</section>';
+	echo '</ul>';
 	echo '</div>' . NR;
 }
 

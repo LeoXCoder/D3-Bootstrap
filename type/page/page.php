@@ -50,13 +50,14 @@ if ($pages)
 { 	
 	$p = new Page_out();
 
-	$p->format('title', '<h1>', '</h1>', false);
-	$p->format('date', 'D, j F Y г.', '<span><time datetime="[page_date_publish_iso]">', '</time></span>');
-	$p->format('cat', ' -&gt; ', '<br><span>' . tf('Рубрика') . ': ', '</span>');
-	$p->format('tag', ' | ', '<br><span>' . tf('Метки') . ': ', '</span>');
-	//$p->format('feed', tf('Комментарии по RSS'), ' | <span>', '</span>');
-	$p->format('edit', 'Edit', ' | <span>', '</span>');
-	$p->format('view_count', '<br><span>' . tf('Просмотров') . ': ', '</span>');
+	$p->format('title', '<h2 class="blog-post-title">', '</h2>', true);
+	$p->format('date', 'D, j F Y г.', '<span class="glyphicon glyphicon-time"></span> <time datetime="[page_date_publish_iso]">', '</time>');
+	$p->format('cat', ' -&gt; ', '<br /><span class="glyphicon glyphicon-info-sign"></span>&ensp;');
+	$p->format('tag', ' | ', '&emsp;<span class="glyphicon glyphicon-tags"></span>&ensp;');
+	$p->format('feed', tf('Комментарии по RSS'), ' | <span>', '</span>');
+	$p->format('edit', 'Изменить', '&emsp;<span class="glyphicon glyphicon-pencil"></span>&ensp;');
+	$p->format('view_count', '&emsp;<span class="glyphicon glyphicon-eye-open"></span>&ensp;');
+	$p->format('comments', '<button type="button" class="btn btn-link right">'.tf('Обсудить').'</button>', tf('Читать комментарии'));
 
 	foreach ($pages as $page)
 	{
@@ -72,7 +73,7 @@ if ($pages)
 		
 		$p->load($page);
 		
-		$p->div_start('page_only', 'wrap', '<article>');
+		$p->div_start('blog-post');
 		
 			// у page в записи может быть метаполе info-top-custom
 			// где указываетеся свой файл вывода
@@ -98,13 +99,10 @@ if ($pages)
 					}
 					else
 					{
-						$p->html(NR . '<header>');
-							$p->line('[title]');
-							
-							$p->div_start('info info-top');
-								$p->line('[date][edit][cat][tag][view_count]');
-							$p->div_end('info info-top');
-						$p->html('</header>');
+						$p->line('[title]');
+						$p->html('<p class="blog-post-meta">');	
+						$p->line('[date][cat][tag][view_count][edit]');
+						$p->html('</p>');
 					}
 				}
 			}
@@ -176,7 +174,7 @@ if ($pages)
 				}
 			}
 			
-		$p->div_end('page_only', 'wrap', '</article>');
+		$p->div_end('blog-post');
 		
 		if ($f = mso_page_foreach('page-only-end')) require($f);
 		
