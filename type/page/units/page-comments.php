@@ -173,10 +173,7 @@ if ($page['page_comment_allow'] and $page_text_ok)
 		}
 		else 
 		{
-			echo '<div class="clearfix"></div>' 
-				. mso_get_val('leave_a_comment_start', '<div class="leave_a_comment">') 
-				. mso_get_option('leave_a_comment', 'templates', tf('Оставьте комментарий!'))
-				. mso_get_val('leave_a_comment_end', '</div>');
+			echo '<div class="clearfix"></div>';
 		}
 		
 		if ($f = mso_page_foreach('page-comment-form')) 
